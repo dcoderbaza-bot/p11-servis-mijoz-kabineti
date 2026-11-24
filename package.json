@@ -1,0 +1,24 @@
+{
+  "name": "p11-servis-mijoz-kabineti",
+  "version": "1.0.0",
+  "description": "P11 — Telefon va noutbuk ta'mirlash servisining mijoz kabineti (DIK1305 Dasturiy injiniringga kirish loyihasi)",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "test": "node --test tests/*.test.js",
+    "lint:check": "node scripts/check-syntax.js",
+    "build:release": "node scripts/build-release.js"
+  },
+  "keywords": [
+    "DIK1305",
+    "P11",
+    "repair-service",
+    "estimate-versioning",
+    "software-engineering"
+  ],
+  "author": "Temirov Dilshod Dilmurod o'g'li",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
