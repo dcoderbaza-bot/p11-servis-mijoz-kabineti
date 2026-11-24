@@ -1,50 +1,74 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="uz" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TechFix Kabinet (P11) — Telefon va noutbuk ta’mirlash servisining mijoz kabineti</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./css/styles.css" />
 </head>
 <body>
   <header class="navbar">
     <div class="navbar-inner">
       <div class="logo-group">
-        <span class="code-chip">P11</span>
+        <div class="brand-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
         <div>
-          <div class="nav-title">TechFix Servis — Mijoz Kabineti</div>
-          <div class="nav-subtitle">DIK1305 · Telefon va noutbuk ta’mirlash smeta versiyalari va holat boshqaruvi</div>
+          <div class="nav-title jakarta">
+            TechFix Servis Kabineti
+            <span class="code-chip">P11 · DIK1305</span>
+          </div>
+          <div class="nav-subtitle">Telefon va noutbuk ta’mirlash smeta versiyalari hamda shaffof mijoz roziligi platformasi</div>
         </div>
       </div>
+
       <div class="nav-controls">
-        <span class="engine-badge" id="engineBadge">Yuklanmoqda...</span>
-        <a class="nav-btn" href="./prototype.html">📐 UI/UX Prototip (01-topshiriq)</a>
-        <button class="nav-btn" onclick="window.App.resetDemo()">↺ Demo ssenariyni tiklash</button>
+        <span class="engine-badge" id="engineBadge">● Yuklanmoqda...</span>
+        <a class="nav-btn" href="./prototype.html">📐 UX Prototip Studiyasi</a>
+        <button class="nav-btn" onclick="window.App.resetDemo()">↺ Demo tiklash</button>
+        <button class="nav-btn theme-toggle" id="themeToggleBtn" onclick="window.App.toggleTheme()" title="Kun / Tun rejimi">🌙</button>
       </div>
     </div>
   </header>
 
   <main class="main-wrap">
+    <!-- BENTO KPI SUMMARY -->
+    <section class="kpi-grid" id="kpiStrip"></section>
+
     <section class="demo-guide">
-      <div style="font-size:13.5px;color:#1e3a8a;">
-        <strong>Namoyish ssenariysi (ORD-101 — iPhone 14 Pro):</strong> Mijoz dastlabki <strong>Smeta v1</strong> (ekran almashtirish — 1 200 000 so‘m) ni tasdiqlagan. Usta qo‘shimcha nosozlik topib <strong>Smeta v2</strong> (1 650 000 so‘m) yuborgan. Mijoz ikkala versiyani solishtirib <strong>Tasdiqlashi (Qabul)</strong> yoki <strong>Rad etishi (sabab + keyingi amal)</strong> mumkin.
+      <div>
+        <strong style="color:var(--brand);">⚡ Namoyish ssenariysi (#ORD-101 · iPhone 14 Pro):</strong>
+        Mijoz dastlabki <strong>Smeta v1</strong> (ekran almashtirish — <span class="mono">1 200 000 so‘m</span>) ni tasdiqlagan. Usta ichki diagnostikada qo‘shimcha nosozlik topib <strong>Smeta v2</strong> (<span class="mono">1 650 000 so‘m</span>) yuborgan. Mijoz ikkala versiyani yonma-yon solishtirib <strong>Tasdiqlashi (Qabul)</strong> yoki <strong>Rad etishi (sabab + keyingi amal)</strong> mumkin.
       </div>
     </section>
 
     <div id="toastBanner" class="toast-banner"></div>
 
+    <!-- ROLE SWITCHER -->
     <nav class="role-tabs">
       <button class="role-tab active" data-role="customer" onclick="window.App.switchRole('customer')">
-        <div class="role-tab-title">1. Mijoz kabineti</div>
-        <div class="role-tab-desc">Smeta v1/v2 ni solishtirish, tasdiqlash yoki rad etish va holatni kuzatish</div>
+        <div class="role-tab-title jakarta">
+          <span>👤 1. Mijoz shaxsiy kabineti</span>
+          <span class="status-pill st-WAITING_REAPPROVAL" id="pendingCountBadge">2 tasdiq</span>
+        </div>
+        <div class="role-tab-desc">Smeta v1 va v2 ni solishtirish, tasdiqlash yoki rad etish hamda jarayonni kuzatish</div>
       </button>
+
       <button class="role-tab" data-role="technician" onclick="window.App.switchRole('technician')">
-        <div class="role-tab-title">2. Usta paneli</div>
-        <div class="role-tab-desc">Diagnostika xulosasi, yangi smeta versiyasi yuborish va ta’mirni yakunlash</div>
+        <div class="role-tab-title jakarta">
+          <span>🔧 2. Usta diagnostika studiyasi</span>
+        </div>
+        <div class="role-tab-desc">Diagnostika xulosasi, yangi smeta versiyasi yuborish va ta’mir holatini yangilash</div>
       </button>
+
       <button class="role-tab" data-role="reception" onclick="window.App.switchRole('reception')">
-        <div class="role-tab-title">3. Qabul xodimi oynasi</div>
-        <div class="role-tab-desc">Yangi telefon yoki noutbuk va mijoz shikoyatini ro‘yxatga olish</div>
+        <div class="role-tab-title jakarta">
+          <span>📋 3. Servis qabulxonasi</span>
+        </div>
+        <div class="role-tab-desc">Yangi smartfon yoki noutbuk va mijoz shikoyatini bir zumda ro‘yxatga olish</div>
       </button>
     </nav>
 
@@ -52,13 +76,23 @@
     <section id="panel-customer" class="role-panel active">
       <div class="layout-2col">
         <aside class="card">
-          <div class="card-title">Buyurtmalar ro‘yxati</div>
-          <input
-            type="text"
-            id="searchOrderInput"
-            class="search-input"
-            placeholder="Kvitansiya (ORD-101), ism yoki model..."
-          />
+          <div class="card-title jakarta">
+            <span>Buyurtmalar navbati</span>
+            <span class="mono" style="font-size:12px;color:var(--muted);" id="orderCountLabel">3 ta</span>
+          </div>
+          <div class="search-wrap">
+            <input
+              type="text"
+              id="searchOrderInput"
+              class="search-input"
+              placeholder="🔍 Kvitansiya (ORD-101), ism yoki model..."
+            />
+          </div>
+          <div class="filter-chips">
+            <button class="f-chip active" data-filter="ALL" onclick="window.App.setFilter('ALL')">Barchasi</button>
+            <button class="f-chip" data-filter="PENDING" onclick="window.App.setFilter('PENDING')">Tasdiq kutmoqda</button>
+            <button class="f-chip" data-filter="ACTIVE" onclick="window.App.setFilter('ACTIVE')">Ta’mirda / Tayyor</button>
+          </div>
           <div id="orderList" class="order-list"></div>
         </aside>
 
@@ -69,9 +103,13 @@
     <!-- 2-PANEL: USTA PANELI -->
     <section id="panel-technician" class="role-panel">
       <div class="card">
-        <div class="card-title">Usta ish stoli — Smeta yaratish va ta’mir holatini boshqarish</div>
-        <div style="margin-bottom:14px;">
-          <label class="form-label">Buyurtmani tanlang:</label>
+        <div class="card-title jakarta">
+          <span>🔧 Usta diagnostika va smeta studiyasi</span>
+          <span class="status-pill st-REGISTERED">BR-P11 Himoyasi Faol</span>
+        </div>
+
+        <div style="margin-bottom:16px;">
+          <label class="form-label">Boshqariladigan qurilmani tanlang:</label>
           <select id="techOrderSelect" class="form-control" onchange="window.App.selectOrder(this.value)"></select>
         </div>
 
@@ -79,49 +117,60 @@
 
         <div class="compare-grid">
           <form class="est-box" onsubmit="window.App.submitNewEstimate(event)">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-              <strong>Yangi smeta versiyasini (v1 / v2) yuborish</strong>
-              <button type="button" class="btn btn-secondary" style="padding:5px 10px;font-size:12px;" onclick="window.App.fillSampleEstimate()">
-                ⚡ Namuna to‘ldirish
-              </button>
-            </div>
-            <div style="margin-bottom:10px;">
-              <label class="form-label">Diagnostika va nosozlik tavsifi:</label>
-              <input type="text" id="estDiagNote" class="form-control" placeholder="Masalan: Quvvat mikrosxemasi qisqa tutashgan" required />
-            </div>
-            <div style="margin-bottom:10px;">
-              <label class="form-label">Ta’mirlash muddati (soatlarda):</label>
-              <input type="number" id="estDuration" class="form-control" placeholder="24" min="1" required />
-            </div>
-            <div class="form-grid">
-              <div>
-                <label class="form-label">1-band (Qism yoki ish nomi):</label>
-                <input type="text" id="estItem1Title" class="form-control" placeholder="OLED ekran moduli" required />
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:8px;">
+                <strong class="jakarta" style="font-size:15.5px;">Yangi smeta versiyasini (v1 / v2) shakllantirish</strong>
+                <button type="button" class="btn btn-secondary" style="padding:6px 11px;font-size:12px;" onclick="window.App.fillSampleEstimate()">
+                  ⚡ Namuna to‘ldirish
+                </button>
               </div>
-              <div>
-                <label class="form-label">1-band narxi (so‘m):</label>
-                <input type="number" id="estItem1Price" class="form-control" placeholder="1050000" min="1000" required />
+              <div style="margin-bottom:10px;">
+                <label class="form-label">Texnik diagnostika va aniqlangan nosozlik:</label>
+                <input type="text" id="estDiagNote" class="form-control" placeholder="Masalan: Quvvat kontrolleri qisqa tutashgan" required />
+              </div>
+              <div style="margin-bottom:10px;">
+                <label class="form-label">Ta’mirlash muddati (soatlarda):</label>
+                <input type="number" id="estDuration" class="form-control" placeholder="24" min="1" required />
+              </div>
+              <div class="form-grid">
+                <div>
+                  <label class="form-label">1-band (Qism yoki ish nomi):</label>
+                  <input type="text" id="estItem1Title" class="form-control" placeholder="OLED ekran moduli" oninput="window.App.updateLiveTotal()" required />
+                </div>
+                <div>
+                  <label class="form-label">1-band narxi (so‘m):</label>
+                  <input type="number" id="estItem1Price" class="form-control" placeholder="1050000" min="1000" oninput="window.App.updateLiveTotal()" required />
+                </div>
+              </div>
+              <div class="form-grid">
+                <div>
+                  <label class="form-label">2-band (Qo‘shimcha qism / ish):</label>
+                  <input type="text" id="estItem2Title" class="form-control" placeholder="Almashtirish va yig'ish" oninput="window.App.updateLiveTotal()" />
+                </div>
+                <div>
+                  <label class="form-label">2-band narxi (so‘m):</label>
+                  <input type="number" id="estItem2Price" class="form-control" placeholder="150000" min="0" oninput="window.App.updateLiveTotal()" />
+                </div>
               </div>
             </div>
-            <div class="form-grid">
+
+            <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
               <div>
-                <label class="form-label">2-band (Qo‘shimcha ish / qism — ixtiyoriy):</label>
-                <input type="text" id="estItem2Title" class="form-control" placeholder="Almashtirish xizmati" />
+                <span style="font-size:12px;color:var(--muted);">Hisoblangan jami smeta:</span>
+                <div class="mono" style="font-weight:800;font-size:16px;color:var(--brand);" id="liveEstimateTotal">0 so‘m</div>
               </div>
-              <div>
-                <label class="form-label">2-band narxi (so‘m):</label>
-                <input type="number" id="estItem2Price" class="form-control" placeholder="150000" min="0" />
-              </div>
+              <button type="submit" class="btn btn-primary">Smetani mijozga yuborish →</button>
             </div>
-            <button type="submit" class="btn btn-primary">Smetani mijoz kabinetiga yuborish</button>
           </form>
 
           <div class="est-box">
-            <strong>Biznes qoida (BR-P11) tekshiruvi bilan holatni yangilash</strong>
-            <p style="font-size:13px;color:#475569;margin-top:6px;">
-              Agar eng so‘nggi smeta mijoz tomonidan tasdiqlanmagan bo‘lsa, tizim ustaning ishni davom ettirish yoki yakunlash so‘rovini avtomatik <strong>rad etadi</strong>.
-            </p>
-            <div class="btn-group" style="margin-top:16px;">
+            <div>
+              <strong class="jakarta" style="font-size:15.5px;">🛡️ Biznes qoida (BR-P11) asosida holatni o‘zgartirish</strong>
+              <p style="font-size:13px;color:var(--muted);margin-top:8px;">
+                Tizim mijoz huquqlarini himoya qiladi: agar amaldagi eng so‘nggi smeta versiyasi mijoz tomonidan tasdiqlanmagan bo‘lsa, ta’mirni boshlash yoki yakunlash so‘rovi avtomatik <strong>409 Conflict</strong> bilan bloklanadi.
+              </p>
+            </div>
+            <div class="btn-group" style="margin-top:18px;">
               <button type="button" class="btn btn-primary" onclick="window.App.updateTechStatus('IN_PROGRESS')">
                 ▶ Ta’mirni davom ettirish (IN_PROGRESS)
               </button>
@@ -137,7 +186,7 @@
     <!-- 3-PANEL: QABUL XODIMI PANELI -->
     <section id="panel-reception" class="role-panel">
       <div class="card">
-        <div class="card-title">Qabul xodimi — Yangi qurilma va mijoz shikoyatini ro‘yxatga olish</div>
+        <div class="card-title jakarta">📋 Servis qabulxonasi — Yangi qurilma va shikoyatni ro‘yxatga olish</div>
         <form onsubmit="window.App.registerOrder(event)">
           <div class="form-grid">
             <div>
@@ -149,28 +198,28 @@
               <input type="text" id="recPhone" class="form-control" placeholder="+998 90 999 88 77" required />
             </div>
             <div>
-              <label class="form-label">Qurilma turi:</label>
+              <label class="form-label">Qurilma toifasi:</label>
               <select id="recType" class="form-control">
-                <option value="Smartfon">Smartfon</option>
-                <option value="Noutbuk">Noutbuk</option>
+                <option value="Smartfon">📱 Smartfon</option>
+                <option value="Noutbuk">💻 Noutbuk</option>
               </select>
             </div>
           </div>
           <div class="form-grid">
             <div>
-              <label class="form-label">Qurilma modeli:</label>
-              <input type="text" id="recModel" class="form-control" placeholder="Samsung Galaxy S24 / Lenovo Legion 5" required />
+              <label class="form-label">Qurilma aniq modeli:</label>
+              <input type="text" id="recModel" class="form-control" placeholder="Samsung Galaxy S24 Ultra / MacBook Pro 14" required />
             </div>
             <div>
               <label class="form-label">Seriya / IMEI raqami:</label>
-              <input type="text" id="recSerial" class="form-control" placeholder="SN-S24-7721" />
+              <input type="text" id="recSerial" class="form-control mono" placeholder="SN-S24U-7721" />
             </div>
           </div>
-          <div style="margin-bottom:14px;">
-            <label class="form-label">Mijoz shikoyati va dastlabki holat:</label>
-            <input type="text" id="recComplaint" class="form-control" placeholder="Quvvat olmayapti, USB-C porti bo'shab qolgan" required />
+          <div style="margin-bottom:16px;">
+            <label class="form-label">Mijoz shikoyati va birlamchi holat izohi:</label>
+            <input type="text" id="recComplaint" class="form-control" placeholder="Quvvat olmayapti, Type-C ulagichi bo'shab qolgan" required />
           </div>
-          <button type="submit" class="btn btn-primary">+ Qurilmani ro‘yxatga olish va kvitansiya ochish</button>
+          <button type="submit" class="btn btn-primary">+ Kvitansiya ochish va navbatga qo‘shish</button>
         </form>
       </div>
     </section>
