@@ -435,7 +435,10 @@
               <strong>Mijoz:</strong> ${order.customerName} (${order.customerPhone}) · <strong>Mas’ul:</strong> ${order.technicianName}
             </div>
           </div>
-          <span class="status-pill st-${order.status}" style="font-size:12.5px;padding:6px 13px;">${order.statusLabel}</span>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="status-pill st-${order.status}" style="font-size:12.5px;padding:6px 13px;">${order.statusLabel}</span>
+            <button class="btn btn-secondary" style="padding:6px 12px;font-size:12px;" onclick="window.App.openReceiptModal('${order.id}')">📄 Elektron kvitansiya</button>
+          </div>
         </div>
 
         <div class="passport-hero">
@@ -743,6 +746,159 @@
       activeFilter = 'ALL';
       showToast("Namoyish ma'lumotlari dastlabki holatga (#ORD-101 Smeta v1 va v2) qaytarildi.", false);
       await fetchOrders();
+    },
+
+    async runDemoStep(step) {
+      if (step === 1) {
+        await window.App.resetDemo();
+        window.App.switchRole('customer');
+        showToast("1-qadam: Mijoz kabinetida #ORD-101 (Smeta v1 tasdiqlangan, Smeta v2 qaror kutmoqda) ochildi.", false);
+      } else if (step === 2) {
+        await window.App.resetDemo();
+        window.App.switchRole('customer');
+        await window.App.approveLatest('ORD-101', 2);
+      } else if (step === 3) {
+        await window.App.resetDemo();
+        window.App.switchRole('customer');
+        await mutateOrder(
+          {
+            orderId: 'ORD-101',
+            url: './api/orders/ORD-101/decision',
+            body: { decision: 'REJECT', version: 2, reason: "Qo'shimcha xarajat shaxsiy budjetimdan oshib ketdi" }
+          },
+          (order) =>
+            window.EstimatePolicy.evaluateCustomerDecision(order, {
+              decision: 'REJECT',
+              version: 2,
+              reason: "Qo'shimcha xarajat shaxsiy budjetimdan oshib ketdi"
+            })
+        );
+      } else if (step === 4) {
+        await window.App.resetDemo();
+        window.App.switchRole('technician');
+        selectedOrderId = 'ORD-101';
+        renderAll();
+        await window.App.updateTechStatus('COMPLETED');
+      }
+    },
+
+    openTestModal() {
+      const P = window.EstimatePolicy;
+      const clone = () => JSON.parse(JSON.stringify(window.SeedOrders.getInitialOrders()[0]));
+      const results = [];
+
+      const runCase = (name, fn) => {
+        const t0 = performance.now();
+        fn();
+        const ms = (performance.now() - t0).toFixed(2);
+        results.push({ name, passed: true, ms });
+      };
+
+      runCase("TEST-01 [QABUL]: Smeta v2 tasdiqlanganda buyurtma IN_PROGRESS ga o'tadi (1 650 000 so'm)", () => {
+        const o = clone();
+        const r = P.evaluateCustomerDecision(o, { decision: 'APPROVE', version: 2 });
+        if (!r.accepted || o.status !== 'IN_PROGRESS') throw new Error('Fail');
+      });
+
+      runCase("TEST-02 [RAD ETISH]: Smeta v2 sabab bilan rad etilganda ESTIMATE_REJECTED va CONTINUE_V1 qaytadi", () => {
+        const o = clone();
+        const r = P.evaluateCustomerDecision(o, { decision: 'REJECT', version: 2, reason: 'Narx qimmat' });
+        if (r.code !== 'ESTIMATE_REJECTED' || !r.nextActions.length) throw new Error('Fail');
+      });
+
+      runCase("TEST-03 [KEYINGI AMAL]: Rad etilgach CONTINUE_V1 tanlansa 1 200 000 so'm Smeta v1 tiklanadi", () => {
+        const o = clone();
+        P.evaluateCustomerDecision(o, { decision: 'REJECT', version: 2, reason: 'Muddat uzoq' });
+        const f = P.applyFollowUpAction(o, 'CONTINUE_V1');
+        if (!f.accepted || o.agreedPrice !== 1200000) throw new Error('Fail');
+      });
+
+      runCase("TEST-04 [HIMOYA 409]: Tasdiqlanmagan Smeta v2 ustida usta ishni davom ettira olmaydi", () => {
+        const o = clone();
+        const g = P.advanceRepairStatus(o, 'IN_PROGRESS');
+        if (g.accepted || g.code !== 'ERR_UNAPPROVED_ESTIMATE') throw new Error('Fail');
+      });
+
+      runCase("TEST-05 [VERSIYA HIMOYASI]: Smeta v2 mavjudligida eskirgan Smeta v1 ni tasdiqlash rad etiladi", () => {
+        const o = clone();
+        const g = P.evaluateCustomerDecision(o, { decision: 'APPROVE', version: 1 });
+        if (g.accepted || g.code !== 'ERR_OUTDATED_VERSION') throw new Error('Fail');
+      });
+
+      runCase("TEST-06 [VALIDATSIYA]: Sabab ko'rsatmasdan rad etish urinishi ERR_REASON_REQUIRED qaytaradi", () => {
+        const o = clone();
+        const g = P.evaluateCustomerDecision(o, { decision: 'REJECT', version: 2, reason: '' });
+        if (g.accepted || g.code !== 'ERR_REASON_REQUIRED') throw new Error('Fail');
+      });
+
+      const modal = document.getElementById('appModal');
+      const content = document.getElementById('appModalContent');
+      content.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;">
+          <div>
+            <div style="font-size:11.5px;font-weight:800;color:var(--emerald);text-transform:uppercase;">DIK1305 · A14 AVTOMATLASHTIRILGAN TEST STENDI</div>
+            <h3 class="jakarta" style="font-size:19px;">✓ 6 / 6 Avtomatik Test Muvaffaqiyatli O‘tdi (Test Passed)</h3>
+          </div>
+          <button class="btn btn-secondary" style="padding:6px 11px;" onclick="window.App.closeModal()">✕</button>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">
+          Aynan shu testlar <code>npm test</code> va GitHub Actions CI/CD konveyerida har bir <code>push</code> hamda <code>Pull Request</code> da avtomatik ishga tushadi:
+        </p>
+        ${results
+          .map(
+            (r) => `
+          <div class="test-row">
+            <span><strong>✓ PASS</strong> · ${r.name}</span>
+            <span class="mono" style="font-size:11.5px;color:var(--emerald);">${r.ms} ms</span>
+          </div>
+        `
+          )
+          .join('')}
+        <div class="btn-group" style="margin-top:18px;justify-content:space-between;">
+          <a class="btn btn-primary" href="https://github.com/dcoderbaza-bot/p11-servis-mijoz-kabineti/actions" target="_blank" rel="noopener">
+            GitHub Actions CI/CD jurnalini ochish →
+          </a>
+          <button class="btn btn-secondary" onclick="window.App.closeModal()">Yopish</button>
+        </div>
+      `;
+      modal.classList.add('open');
+    },
+
+    openReceiptModal(orderId) {
+      const order = allOrders.find((o) => o.id === orderId) || getSelectedOrder();
+      if (!order) return;
+      const modal = document.getElementById('appModal');
+      const content = document.getElementById('appModalContent');
+      content.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border-strong);padding-bottom:12px;margin-bottom:14px;">
+          <div>
+            <div class="mono" style="font-size:12px;color:var(--brand);font-weight:800;">TECHFIX SERVIS MARKAZI · RASMIY KVITANSIYA</div>
+            <h3 class="jakarta" style="font-size:20px;">Buyurtma #${order.id}</h3>
+          </div>
+          <span class="status-pill st-${order.status}">${order.statusLabel}</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13.2px;margin-bottom:14px;">
+          <div><strong>Mijoz:</strong> ${order.customerName}</div>
+          <div><strong>Telefon:</strong> ${order.customerPhone}</div>
+          <div><strong>Qurilma:</strong> ${order.deviceModel}</div>
+          <div><strong>Seriya/IMEI:</strong> <span class="mono">${order.serialNumber}</span></div>
+          <div><strong>Mas'ul usta:</strong> ${order.technicianName}</div>
+          <div><strong>Kelishilgan narx:</strong> <strong class="mono">${order.agreedPrice ? formatMoney(order.agreedPrice) : 'Tasdiq kutilmoqda'}</strong></div>
+        </div>
+        <div style="padding:12px;border-radius:12px;background:var(--surface-2);border:1px solid var(--border);font-size:12.8px;">
+          <strong>Shikoyat:</strong> ${order.complaint}<br>
+          <strong>Kafolat eslatmasi:</strong> BR-P11 qoidasiga binoan mijoz tasdig'isiz hech qanday qo'shimcha haq olinmaydi.
+        </div>
+        <div class="btn-group" style="margin-top:18px;justify-content:flex-end;">
+          <button class="btn btn-primary" onclick="window.print()">🖨️ Chop etish / PDF saqlash</button>
+          <button class="btn btn-secondary" onclick="window.App.closeModal()">Yopish</button>
+        </div>
+      `;
+      modal.classList.add('open');
+    },
+
+    closeModal() {
+      document.getElementById('appModal').classList.remove('open');
     }
   };
 

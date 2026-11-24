@@ -1,105 +1,125 @@
-# TechFix Kabinet (`P11`) — Telefon va noutbuk ta’mirlash servisining mijoz kabineti
+# 🛠️ TechFix Servis Kabineti (`P11`) — Telefon va noutbuk ta’mirlash servisining mijoz kabineti
 
-> **Fan:** Dasturiy injiniringga kirish (`DIK1305`) · Cyber University (2026–2027 o‘quv yili)  
-> **Loyiha kodi:** `P11`  
+[![CI/CD — Testlar va GitHub Pages](https://github.com/dcoderbaza-bot/p11-servis-mijoz-kabineti/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/dcoderbaza-bot/p11-servis-mijoz-kabineti/actions)
+![Loyiha kodi](https://img.shields.io/badge/DIK1305-P11_Loyiha-2563eb)
+![Reliz](https://img.shields.io/badge/Release-v1.1.0-059669)
+![Backend](https://img.shields.io/badge/Backend-Node.js_REST_API-0f172a)
+
+> **Universitet:** Cyber University · Dasturiy injiniringga kirish (`DIK1305`, 2026–2027 o‘quv yili)  
 > **Talaba:** Temirov Dilshod Dilmurod o‘g‘li (`SWE25`)  
 > **O‘qituvchi:** Katta o‘qituvchi Ergashev Muhammadsodiq  
 
 ---
 
-## 🌐 Jonli Havolalar (Bepul Hosting)
+## 🌐 Jonli Havolalar (100% Bepul Bulutli Infratuzilma)
 
-- **Ishlaydigan Yakuniy Mini-Ilova (Demo):** https://dcoderbaza-bot.github.io/p11-servis-mijoz-kabineti/
-- **Bosiladigan UI/UX Wireframe Prototipi (01-topshiriq):** https://dcoderbaza-bot.github.io/p11-servis-mijoz-kabineti/prototype.html
-- **GitHub Repozitoriy:** https://github.com/dcoderbaza-bot/p11-servis-mijoz-kabineti
-
----
-
-## 📌 1. Muammo va Loyiha Vazifasi
-
-Qurilmasini (smartfon yoki noutbuk) servis markaziga topshirgan mijoz ta’mir narxi, muddati va joriy holatini bilish uchun servisga qayta-qayta qo‘ng‘iroq qiladi. Usta ichki diagnostikada qo‘shimcha nosozlik topsa, yangi xarajat bo‘yicha mijoz roziligini shaffof qayd etishi kerak.
-
-**Birinchi reliz imkoniyatlari:**
-1. **Qabul xodimi** qurilma modeli, seriya raqami va mijoz shikoyatini ro‘yxatga oladi (`ORD-101` kvitansiya).
-2. **Usta** tekshiruv natijasi, ishlar ro‘yxati, narx va muddatdan iborat **Smeta v1** va qo‘shimcha nosozlik topilganda **Smeta v2** yaratadi.
-3. **Mijoz** shaxsiy kabinetda `Smeta v1` va `Smeta v2` farqini yonma-yon ko‘rib, **Tasdiqlaydi (Qabul)** yoki sababini ko‘rsatib **Rad etadi**.
+| Muhit / Dalil | To‘g‘ridan-to‘g‘ri havola |
+| :--- | :--- |
+| **🚀 Ishlaydigan Yakuniy Mini-Ilova (Demo)** | **https://dcoderbaza-bot.github.io/p11-servis-mijoz-kabineti/** |
+| **📐 Bosiladigan UI/UX Prototip Studiyasi (`A10`)** | **https://dcoderbaza-bot.github.io/p11-servis-mijoz-kabineti/prototype.html** |
+| **🔀 Asosiy Biznes Qoidasi Merged PR (`#1`)** | **https://github.com/dcoderbaza-bot/p11-servis-mijoz-kabineti/pull/1** |
+| **✨ Zamonaviy SaaS Dizayn va Demo Stend PRs (`#2`, `#3`)** | **https://github.com/dcoderbaza-bot/p11-servis-mijoz-kabineti/pulls?q=is%3Apr+is%3Aclosed** |
+| **✅ GitHub Actions CI/CD Avtomatik Testlar** | **https://github.com/dcoderbaza-bot/p11-servis-mijoz-kabineti/actions** |
+| **🏷️ Rasmiy Demo Versiya Relizlari (`v1.0.0` / `v1.1.0`)** | **https://github.com/dcoderbaza-bot/p11-servis-mijoz-kabineti/releases** |
 
 ---
 
-## ⚖️ 2. Asosiy Biznes Qoidasi (`BR-P11`)
+## 📌 1. Muammo, Foydalanuvchi Oqimi va Asosiy Biznes Qoidasi (`A09`)
 
-> **Qoida ta’rifi:** Ta’mirlash ishini boshlash yoki qo‘shimcha nosozlik topilganda ishni davom ettirish (`IN_PROGRESS`) faqat mijoz tomonidan eng so‘nggi amaldagi smeta versiyasi (`latestVersion`) tasdiqlangandagina ruxsat etiladi.
+### Buyurtmachi muammosi
+Qurilmasini (smartfon yoki noutbuk) servis markaziga topshirgan mijoz ta’mir narxi, tayyor bo‘lish muddati va joriy holatini bilish uchun servisga qayta-qayta qo‘ng‘iroq qiladi. Usta ichki diagnostikada qo‘shimcha nosozlik topsa, yangi xarajat bo‘yicha mijoz roziligini shaffof qayd etishi va kelishmovchilikning oldini olishi zarur.
 
-- **Qabul holati (`APPROVE`):** Mijoz amaldagi `Smeta v2` ni tasdiqlasa, avvalgi `Smeta v1` arxivlanadi (`SUPERSEDED`), yakuniy kelishilgan narx yangilanadi (`1 650 000 so'm`) va buyurtma `IN_PROGRESS` (*«Ta’mirlash jarayonida»*) holatiga o‘tadi.
-- **Rad etish holati (`REJECT` va Himoya qoidalari):**
-  1. Mijoz `Smeta v2` ni sabab ko‘rsatib rad etsa, qo‘shimcha xarajat to‘xtatiladi (`ESTIMATE_REJECTED`) va mijozga **keyingi aniq amallar** taklif etiladi (*faqat avval tasdiqlangan `Smeta v1` bo‘yicha davom ettirish* yoki *ta’mirdan voz kechib qurilmani olib ketish*).
-  2. Usta mijoz hali tasdiqlamagan `Smeta v2` ustida buyurtmani `IN_PROGRESS` / `COMPLETED` ga o‘tkazmoqchi bo‘lsa, server `409 Conflict` (`ERR_UNAPPROVED_ESTIMATE`) bilan amalni bloklaydi.
+### Foydalanuvchi oqimi (User Flow)
+1. **Qabul xodimi** qurilma modeli, seriya/IMEI raqami va mijoz shikoyatini ro‘yxatga oladi (`#ORD-101`).
+2. **Usta** birlamchi diagnostika bo‘yicha **Smeta v1** yaratadi; ichki nosozlik topilganda **Smeta v2** (`+Δ so'm`, `+Δ soat`) yuboradi.
+3. **Mijoz** kabinetda `Smeta v1` va `Smeta v2` ni yonma-yon solishtirib **Tasdiqlaydi (Qabul)** yoki sabab ko‘rsatib **Rad etadi**.
+
+### ⚖️ Asosiy Biznes Qoidasi (`BR-P11: Smeta versiyasi roziligi qoidasi`)
+- **Qabul mezoni (`APPROVE`):** Mijoz eng so‘nggi amaldagi smetani (`Smeta v2 — 1 650 000 so'm`) tasdiqlasa, avvalgi `Smeta v1` arxivlanadi (`SUPERSEDED`), buyurtma `IN_PROGRESS` (*«Smeta tasdiqlandi — Ta’mirlash jarayonida»*) holatiga o‘tadi va ustaga ishlash ruxsati beriladi.
+- **Rad etish mezoni (`REJECT` va `409 Conflict` Himoyasi):**
+  1. Mijoz `Smeta v2` ni sabab tanlab rad etsa, qo‘shimcha xarajat darhol to‘xtatiladi (`ESTIMATE_REJECTED`) va mijozga keyingi aniq amallar taqdim etiladi: **`CONTINUE_V1`** (*faqat avval tasdiqlangan `1 200 000 so'm`lik `Smeta v1` doirasida davom ettirish*) yoki **`CANCEL_AND_PICKUP`** (*ta’mirdan voz kechib qurilmani olib ketish*).
+  2. Usta mijoz tasdiqlamagan `Smeta v2` ustida ishni `IN_PROGRESS` yoki `COMPLETED` ga o‘tkazmoqchi bo‘lsa, modul amalni `409 Conflict` (`ERR_UNAPPROVED_ESTIMATE`) bilan rad etadi.
   3. Yangi `Smeta v2` mavjud bo‘lganda eskirgan `Smeta v1` ni qayta tasdiqlash urinishi `ERR_OUTDATED_VERSION` bilan rad etiladi.
 
 ---
 
-## 🏗️ 3. Arxitektura va Loyiha Tuzilmasi
+## 🏗️ 2. Tizim Arxitekturasi va Interfeys Sxemalari (`docs/`)
 
-Loyiha **Klient–Server (SPA Frontend + Modul-Monolit Node.js REST API)** arxitekturasi asosida qurilgan. Hujjat va sxemalar [`docs/`](./docs/) katalogida joylashgan:
+### Komponentlar va ma’lumot oqimi diagrammasi (`A09`)
+![Komponentlar diagrammasi](./docs/architecture.svg)
 
-- [`docs/architecture.svg`](./docs/architecture.svg) — Komponentlar va ma’lumot oqimi diagrammasi
-- [`docs/wireframes.svg`](./docs/wireframes.svg) — 4 ta interfeys sxemasi (Wireframes) va foydalanuvchi oqimi
-- [`docs/ci-cd-pipeline.svg`](./docs/ci-cd-pipeline.svg) — CI/CD konveyeri va Rollback modeli
-- [`src/domain/estimatePolicy.js`](./src/domain/estimatePolicy.js) — `BR-P11` biznes qoidasi moduli
-- [`backend/server.js`](./backend/server.js) — Bepul Node.js HTTP REST API serveri (`vercel.json` va `render.yaml` bilan mos)
-- [`index.html`](./index.html) / [`prototype.html`](./prototype.html) — Asosiy mini-ilova va interaktiv UI/UX prototip
-- [`tests/`](./tests/) — Avtomatlashtirilgan birlik (unit) va HTTP API integratsion testlar
+### Interfeys sxemalari va foydalanuvchi oqimi (`A10`)
+![Interfeys sxemalari](./docs/wireframes.svg)
+
+### CI/CD konveyeri va avvalgi versiyaga qaytish (Rollback) modeli (`A14`)
+![CI/CD konveyeri](./docs/ci-cd-pipeline.svg)
 
 ---
 
-## 🚀 4. Lokal Ishga Tushirish va Sinash Tartibi
+## 🔌 3. REST API Backend Manzilari (`backend/server.js`)
 
-**Talablar:** Node.js `v18+` (qo‘shimcha pullik paketlar talab etilmaydi).
+| Metod | Manzil (Endpoint) | Vazifasi |
+| :--- | :--- | :--- |
+| `GET` | `/api/health` | Server va `P11` servisi ishchi holatini tekshirish |
+| `GET` | `/api/orders?q=...` | Barcha buyurtmalar va smeta farqlarini (`v1` vs `v2`) olish / qidirish |
+| `POST` | `/api/orders` | Qabul xodimi tomonidan yangi qurilmani ro‘yxatga olish |
+| `POST` | `/api/orders/:id/estimates` | Usta tomonidan `Smeta v1` yoki `Smeta v2` yuborish |
+| `POST` | `/api/orders/:id/decision` | Mijoz qarori (`APPROVE` yoki `REJECT` + sabab) — `BR-P11` tekshiruvi |
+| `POST` | `/api/orders/:id/followup` | Rad etilgandan keyingi muqobil amalni (`CONTINUE_V1` / `CANCEL_AND_PICKUP`) qo‘llash |
+| `POST` | `/api/orders/:id/status` | Ta’mir holatini yangilash (`IN_PROGRESS` / `COMPLETED` — tasdiqsiz bo‘lsa `409 Conflict`) |
+| `POST` | `/api/reset` | Namoyish ma’lumotlarini dastlabki holatga qaytarish |
+
+---
+
+## 🚀 4. Lokal Ishga Tushirish va Avtomatlashtirilgan Testlar
+
+Loyiha Node.js `v18+` standart kutubxonalarida yozilgan — qo‘shimcha pullik paketlar talab etilmaydi:
 
 ```bash
 # 1. Repozitoriyni yuklab olish
 git clone https://github.com/dcoderbaza-bot/p11-servis-mijoz-kabineti.git
 cd p11-servis-mijoz-kabineti
 
-# 2. Sintaksis tekshiruvi
+# 2. Sintaksis va modullar butunligini tekshirish
 npm run lint:check
 
-# 3. Avtomatlashtirilgan testlarni ishga tushirish (Qabul va Rad etish holatlari)
+# 3. Avtomatlashtirilgan testlarni ishga tushirish (Qabul va Rad etish — 6 ta test)
 npm test
 
-# 4. Lokal Full-Stack REST API + Veb serverni ishga tushirish
+# 4. Lokal Full-Stack REST API + Veb-serverni ishga tushirish (http://localhost:3000)
 npm start
 ```
 
-> *Eslatma (Windows PowerShell uchun):* Agar PowerShell’da ExecutionPolicy cheklovi bo‘lsa, `npm.cmd test` va `npm.cmd start` (yoki `node --test tests/*.test.js` va `node backend/server.js`) buyruqlaridan foydalaning.
-
-Server ishga tushgach brauzerda oching:
-- **Asosiy ilova:** `http://localhost:3000`
-- **UI/UX Prototip:** `http://localhost:3000/prototype.html`
-- **Health API:** `http://localhost:3000/api/health`
+> *Windows PowerShell eslatmasi:* ExecutionPolicy cheklovi bo‘lsa `npm.cmd test` va `npm.cmd start` (yoki `node --test tests/*.test.js` va `node backend/server.js`) buyrug‘ini ishlating.
 
 ---
 
-## 🔄 5. Reliz va Avvalgi Versiyaga Qaytish (Rollback) Tartibi
+## 🎬 5. 2–3 Daqiqalik Yakuniy Demo Yo‘riqnomasi (`A15`)
 
-- **Joriy demo versiyasi:** `v1.0.0` (`GitHub Releases` + `GitHub Pages` avtomatik joylashtirish).
-- **CI/CD himoyasi:** Har bir `push` va `Pull Request` da `.github/workflows/ci-cd.yml` avtomatik testlarni (`npm test`) ishga tushiradi. Kamida bitta test muvaffaqiyatsiz bo‘lsa, `deploy-release` bosqichi avtomatik to‘xtatiladi.
-- **Rollback (Avvalgi versiyaga qaytish) qadamlari:**
-  1. Nosoz commit aniqlanganda `main` tarmog‘ida teskari commit yaratiladi:
-     ```bash
-     git revert HEAD --no-edit
-     git push origin main
-     ```
-  2. GitHub Actions qayta ishga tushib, testlardan o‘tgan barqaror versiyani (`v1.0.0`) avtomatik GitHub Pages’ga tiklaydi.
-  3. Favqulodda holatda `GitHub Releases` bo‘limidan avvalgi barqaror `v1.0.0` reliz paketini (`dist/`) yuklab olish mumkin.
+1. **Muammo va Smeta versiyalari (30 soniya):** [Jonli Demo](https://dcoderbaza-bot.github.io/p11-servis-mijoz-kabineti/) ochiladi. `#ORD-101 (iPhone 14 Pro)` buyurtmasida mijoz dastlabki ekran almashtirish smetasini (`Smeta v1: 1 200 000 so'm`) tasdiqlagan, usta esa Charging IC nosozligini topib `Smeta v2: 1 650 000 so'm (+450 000 so'm)` kiritgan.
+2. **Qabul holati namoyishi (45 soniya):** Yuqoridagi `2. Qabul sinovi (Tasdiqlash)` yoki yashil `✓ Smeta v2 ni Tasdiqlash` tugmasi bosiladi — holat `Ta'mirlash jarayonida` ga o‘tadi va `📄 Elektron kvitansiya` ochiladi.
+3. **Rad etish va himoya qoidasi namoyishi (45 soniya):** `3. Rad etish va keyingi amal` bosilganda `Smeta v2` sabab bilan rad etiladi va mijoz `Faqat Smeta v1 (1 200 000 so'm) bo'yicha davom ettirish` ni tanlaydi; `4. Usta 409 Himoyasi sinovi` bosilganda esa tasdiqlanmagan smeta ustida usta ishni yakunlay olmasligi ko‘rsatiladi.
 
 ---
 
-## 🔍 6. Qisqa Retrospektiva
+## 🔄 6. Reliz va Avvalgi Versiyaga Qaytish (Rollback) Rejasi
+
+- **Demo reliz versiyasi:** `v1.1.0` (`GitHub Releases` + `GitHub Pages` avtomatik CD).
+- **Sifat darvozasi:** `.github/workflows/ci-cd.yml` ichida `deploy-release` bosqichi `needs: build-and-test` sharti bilan himoyalangan — kamida bitta avtomatik test xato bersa reliz to‘xtatiladi.
+- **Rollback qadamlari:**
+  ```bash
+  git revert HEAD --no-edit
+  git push origin main
+  ```
+  GitHub Actions 25 soniya ichida avvalgi barqaror reliz kodini qayta sinovdan o‘tkazib jonli GitHub Pages muhitiga tiklaydi.
+
+---
+
+## 🔍 7. Loyiha Retrospektivasi (`A15.5`)
 
 1. **Nima yaxshi ishladi?**  
-   Asosiy biznes qoidasini alohida universal modulda (`src/domain/estimatePolicy.js`) yozish ham Node.js REST API backendida, ham statik GitHub Pages muhitida, ham `tests/estimatePolicy.test.js` avtomatik testlarida 100% bir xil natija olishni ta’minladi.
+   Biznes qoidani yagona universal modulda (`src/domain/estimatePolicy.js`, commit `d75e8c1`) ajratib yozganimiz tufayli aynan bitta kod bazasi ham Node.js REST API serverida, ham statik GitHub Pages muhitida, ham `tests/*.test.js` avtomatik testlarida 100% bir xil natija berdi.
 2. **Qanday qiyinchilik bo‘ldi?**  
-   Mijoz `Smeta v2` ni rad etganida buyurtma umuman to‘xtab qolmasligi uchun avval tasdiqlangan `Smeta v1` holatini yo‘qotmaslik masalasi chiqdi. Buni `SUPERSEDED` maqomi va `applyFollowUpAction('CONTINUE_V1')` yechimi orqali hal qildik (`prototype.html` dagi 3B-ekran sxemasi va `TEST-02` sinovi bunga dalil).
-3. **Keyingi versiyada (`v1.1`) nimani o‘zgartiramiz?**  
-   Telegram Bot webhook bildirishnomasini ulash (yangi `Smeta v2` chiqqanda mijoz telefoniga bir zumda xabar borishi uchun) hamda ehtiyot qismlar ombori qoldig‘i bilan integratsiya qilish rejalashtirilgan.
+   Mijoz ikkinchi smetani (`v2`) rad etganda dastlabki tasdiqlangan `Smeta v1` ma’lumotlari yo‘qolib ketmasligi kerak edi. Ushbu holatni [UI/UX Prototip 3B-ekrani](./prototype.html) va `TEST-02` ([PR #1](https://github.com/dcoderbaza-bot/p11-servis-mijoz-kabineti/pull/1)) orqali modellashtirib, `CONTINUE_V1` keyingi amal mexanizmi bilan yechdik.
+3. **Keyingi versiyada (`v1.2.0`) nimani o‘zgartiramiz?**  
+   Yangi smeta kiritilishi bilan mijozga Telegram Bot webhook bildirishnomasini yuborish hamda ko‘p filialli servis markazlari uchun bulutli PostgreSQL (Supabase) bazasini ulash rejalashtirilgan.

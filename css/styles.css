@@ -709,3 +709,84 @@ h1, h2, h3, .jakarta {
 
 .role-panel { display: none; animation: slideIn 0.2s ease; }
 .role-panel.active { display: block; }
+
+/* INTERACTIVE DEMO TOUR STRIP */
+.tour-bar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  box-shadow: var(--shadow-sm);
+}
+
+.tour-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tour-btn {
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  color: var(--ink-2);
+  padding: 7px 12px;
+  border-radius: 9px;
+  font-size: 12.2px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.16s;
+}
+
+.tour-btn:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+/* MODAL OVERLAY (LIVE TEST RUNNER & RECEIPT) */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(15, 23, 42, 0.58);
+  backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.modal-backdrop.open {
+  display: flex;
+  animation: slideIn 0.18s ease;
+}
+
+.modal-card {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 20px;
+  max-width: 680px;
+  width: 100%;
+  padding: 24px;
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.35);
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.test-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 13px;
+  border-radius: 10px;
+  background: var(--emerald-soft);
+  border: 1px solid rgba(16, 185, 129, 0.32);
+  margin-top: 8px;
+  font-size: 12.8px;
+}
