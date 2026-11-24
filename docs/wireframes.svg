@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 500" width="1120" height="500" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="wfArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb" />
+    </marker>
+    <marker id="wfGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#16a34a" />
+    </marker>
+    <marker id="wfRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#dc2626" />
+    </marker>
+  </defs>
+
+  <rect width="1120" height="500" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" />
+  <rect x="0" y="0" width="1120" height="58" rx="16" fill="#0f172a" />
+  <rect x="0" y="42" width="1120" height="16" fill="#0f172a" />
+  <text x="26" y="36" fill="#ffffff" font-size="19" font-weight="700">P11 — Interfeys Sxemalari (Wireframes) va Foydalanuvchi Oqimi (Qabul / Rad etish)</text>
+  <text x="955" y="36" fill="#93c5fd" font-size="14" font-weight="600">DIK1305 · A10</text>
+
+  <!-- 1-EKRAN -->
+  <rect x="28" y="88" width="295" height="370" rx="12" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+  <rect x="28" y="88" width="295" height="34" rx="12" fill="#e2e8f0" />
+  <text x="42" y="110" fill="#0f172a" font-size="13" font-weight="700">1-EKRAN: Buyurtmalar va Holat</text>
+
+  <rect x="44" y="136" width="263" height="34" rx="6" fill="#f1f5f9" stroke="#cbd5e1" />
+  <text x="54" y="158" fill="#475569" font-size="11.5">Qidiruv: #ORD-101 · iPhone 14 Pro</text>
+
+  <rect x="44" y="182" width="263" height="156" rx="8" fill="#f8fbff" stroke="#2563eb" stroke-width="1.8" />
+  <text x="56" y="203" fill="#0f172a" font-size="12.5" font-weight="700">#ORD-101 — iPhone 14 Pro</text>
+  <rect x="56" y="213" width="195" height="20" rx="10" fill="#fef3c7" />
+  <text x="65" y="227" fill="#b45309" font-size="10.5" font-weight="700">Smeta v2 tasdig'i kutilmoqda</text>
+  <text x="56" y="252" fill="#475569" font-size="11">Bosqich: [1.Qabul] → [2.v1] → [3.v2!]</text>
+  <text x="56" y="272" fill="#334155" font-size="11">Qo'shimcha Charging IC nosozligi</text>
+  <rect x="56" y="290" width="238" height="34" rx="7" fill="#2563eb" />
+  <text x="175" y="311" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="700">Smeta v1 va v2 ni solishtirish →</text>
+
+  <rect x="44" y="352" width="263" height="86" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="4,3" />
+  <text x="56" y="374" fill="#64748b" font-size="11.5" font-weight="700">#ORD-089 — Dell XPS 13</text>
+  <text x="56" y="394" fill="#15803d" font-size="11" font-weight="700">Holat: Yakunlangan (250 000 so'm)</text>
+
+  <!-- 2-EKRAN -->
+  <rect x="385" y="88" width="335" height="370" rx="12" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+  <rect x="385" y="88" width="335" height="34" rx="12" fill="#e2e8f0" />
+  <text x="400" y="110" fill="#0f172a" font-size="13" font-weight="700">2-EKRAN: Smeta v1 vs v2 Qaror Shakli</text>
+
+  <rect x="401" y="136" width="146" height="148" rx="8" fill="#f8fafc" stroke="#94a3b8" />
+  <text x="411" y="156" fill="#0f172a" font-size="12" font-weight="700">Smeta v1 (Eski)</text>
+  <text x="411" y="176" fill="#475569" font-size="11">• OLED Ekran: 1.05M</text>
+  <text x="411" y="194" fill="#475569" font-size="11">• Xizmat: 150 ming</text>
+  <text x="411" y="222" fill="#15803d" font-size="11.5" font-weight="700">Jami: 1 200 000</text>
+  <text x="411" y="240" fill="#64748b" font-size="11">Muddat: 24 soat</text>
+
+  <rect x="558" y="136" width="146" height="148" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8" />
+  <text x="568" y="156" fill="#1d4ed8" font-size="12" font-weight="700">Smeta v2 (Yangi)</text>
+  <text x="568" y="176" fill="#475569" font-size="11">• Ekran + Xizmat</text>
+  <text x="568" y="194" fill="#b45309" font-size="11" font-weight="700">+ Charging IC: 450k</text>
+  <text x="568" y="222" fill="#1e3a8a" font-size="11.5" font-weight="700">Jami: 1 650 000</text>
+  <text x="568" y="240" fill="#b45309" font-size="11" font-weight="700">Farq: +450k / +12s</text>
+
+  <rect x="401" y="298" width="303" height="40" rx="8" fill="#16a34a" />
+  <text x="552" y="323" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">✓ Smeta v2 ni Tasdiqlash (Qabul yo'li)</text>
+
+  <rect x="401" y="348" width="303" height="40" rx="8" fill="#ffffff" stroke="#dc2626" stroke-width="2" />
+  <text x="552" y="373" text-anchor="middle" fill="#dc2626" font-size="12" font-weight="700">✕ Smeta v2 ni Rad etish (Sabab tanlash)</text>
+
+  <text x="552" y="420" text-anchor="middle" fill="#64748b" font-size="11">Rad etishda sabab tanlanishi shart (BR-P11)</text>
+
+  <!-- 3A-EKRAN: QABUL NATIJASI -->
+  <rect x="790" y="88" width="302" height="172" rx="12" fill="#f0fdf4" stroke="#16a34a" stroke-width="2" />
+  <rect x="790" y="88" width="302" height="32" rx="12" fill="#16a34a" />
+  <text x="804" y="109" fill="#ffffff" font-size="12.5" font-weight="700">3A-EKRAN: Natija — Qabul Holati</text>
+  <text x="806" y="142" fill="#14532d" font-size="12.5" font-weight="700">✓ Smeta v2 tasdiqlandi!</text>
+  <text x="806" y="164" fill="#1e293b" font-size="11.5">• Holat: Ta'mirlash jarayonida</text>
+  <text x="806" y="184" fill="#1e293b" font-size="11.5">• Kelishilgan narx: 1 650 000 so'm</text>
+  <text x="806" y="204" fill="#1e293b" font-size="11.5">• Usta ishni davom ettirishga ruxsat oldi</text>
+  <rect x="806" y="218" width="180" height="28" rx="6" fill="#15803d" />
+  <text x="896" y="236" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">← Kabinetga qaytish</text>
+
+  <!-- 3B-EKRAN: RAD ETISH NATIJASI -->
+  <rect x="790" y="286" width="302" height="172" rx="12" fill="#fef2f2" stroke="#dc2626" stroke-width="2" />
+  <rect x="790" y="286" width="302" height="32" rx="12" fill="#dc2626" />
+  <text x="804" y="307" fill="#ffffff" font-size="12.5" font-weight="700">3B-EKRAN: Rad etish va Keyingi Amal</text>
+  <text x="806" y="338" fill="#991b1b" font-size="12" font-weight="700">✕ Sabab: «+450k budjetdan yuqori»</text>
+  <text x="806" y="357" fill="#7f1d1d" font-size="11">Qo'shimcha ish to'xtatildi. Keyingi amal:</text>
+  <rect x="806" y="368" width="270" height="32" rx="6" fill="#2563eb" />
+  <text x="941" y="388" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">1. Faqat Smeta v1 bo'yicha davom ettirish</text>
+  <rect x="806" y="408" width="270" height="32" rx="6" fill="#ffffff" stroke="#64748b" />
+  <text x="941" y="428" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">2. Ta'mirdan voz kechish va olib ketish</text>
+
+  <!-- OQIM STRELKALARI -->
+  <line x1="323" y1="305" x2="381" y2="305" stroke="#2563eb" stroke-width="2.8" marker-end="url(#wfArrow)" />
+  <path d="M 704 318 L 748 318 L 748 175 L 786 175" fill="none" stroke="#16a34a" stroke-width="2.8" marker-end="url(#wfGreen)" />
+  <path d="M 704 368 L 786 368" fill="none" stroke="#dc2626" stroke-width="2.8" marker-end="url(#wfRed)" />
+</svg>

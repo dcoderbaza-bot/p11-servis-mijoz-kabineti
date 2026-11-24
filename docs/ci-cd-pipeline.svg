@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 430" width="1120" height="430" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="ciArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1d4ed8" />
+    </marker>
+    <marker id="ciGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#15803d" />
+    </marker>
+    <marker id="ciRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#dc2626" />
+    </marker>
+    <marker id="ciWarn" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#b45309" />
+    </marker>
+  </defs>
+
+  <rect width="1120" height="430" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" />
+  <rect x="0" y="0" width="1120" height="56" rx="16" fill="#0f172a" />
+  <rect x="0" y="40" width="1120" height="16" fill="#0f172a" />
+  <text x="26" y="35" fill="#ffffff" font-size="19" font-weight="700">P11 — CI/CD Konveyeri, Reliz Paketi va Rollback (Qaytish) Modeli</text>
+  <text x="955" y="35" fill="#4ade80" font-size="14" font-weight="600">DIK1305 · A14</text>
+
+  <!-- BOSQICH 1: HODISA -->
+  <rect x="26" y="102" width="145" height="92" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2" />
+  <text x="98" y="128" text-anchor="middle" fill="#1e3a8a" font-size="12.5" font-weight="700">1. Ishga tushish</text>
+  <text x="98" y="148" text-anchor="middle" fill="#334155" font-size="11.5">git push / PR</text>
+  <text x="98" y="166" text-anchor="middle" fill="#475569" font-size="11">(main tarmog'i)</text>
+
+  <!-- BOSQICH 2: TAYYORLASH -->
+  <rect x="200" y="102" width="150" height="92" rx="10" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+  <text x="275" y="128" text-anchor="middle" fill="#0f172a" font-size="12.5" font-weight="700">2. Tayyorlash</text>
+  <text x="275" y="148" text-anchor="middle" fill="#334155" font-size="11.5">Node.js 20 muhiti</text>
+  <text x="275" y="166" text-anchor="middle" fill="#475569" font-size="11">npm run lint:check</text>
+
+  <!-- BOSQICH 3: AVTOMATIK TEST -->
+  <rect x="380" y="102" width="175" height="92" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.2" />
+  <text x="467" y="128" text-anchor="middle" fill="#14532d" font-size="12.5" font-weight="700">3. Avtomatik Testlar</text>
+  <text x="467" y="148" text-anchor="middle" fill="#334155" font-size="11.5">npm test (6 ta test)</text>
+  <text x="467" y="166" text-anchor="middle" fill="#15803d" font-size="11" font-weight="600">Qabul + Rad sinovlari</text>
+
+  <!-- SHART: TEST O'TDIMI -->
+  <polygon points="635,98 705,148 635,198 565,148" fill="#fef3c7" stroke="#d97706" stroke-width="2.2" />
+  <text x="635" y="144" text-anchor="middle" fill="#78350f" font-size="11.5" font-weight="700">Testlar</text>
+  <text x="635" y="160" text-anchor="middle" fill="#78350f" font-size="11.5" font-weight="700">o'tdimi?</text>
+
+  <!-- XATOLIK / TO'XTATISH -->
+  <rect x="535" y="278" width="200" height="86" rx="10" fill="#fef2f2" stroke="#dc2626" stroke-width="2.2" />
+  <text x="635" y="305" text-anchor="middle" fill="#991b1b" font-size="13" font-weight="700">✕ RELIZ TO'XTATILADI</text>
+  <text x="635" y="325" text-anchor="middle" fill="#7f1d1d" font-size="11.5">Deploy bloki ishga tushmaydi</text>
+  <text x="635" y="344" text-anchor="middle" fill="#7f1d1d" font-size="11">GitHub Actions qizil signal beradi</text>
+
+  <!-- BOSQICH 4: RELIZ PAKETI VA SINOV MUHITI -->
+  <rect x="742" y="102" width="168" height="92" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2" />
+  <text x="826" y="126" text-anchor="middle" fill="#1e3a8a" font-size="12.5" font-weight="700">4. Reliz Paketi &amp; Sinov</text>
+  <text x="826" y="146" text-anchor="middle" fill="#334155" font-size="11.5">dist/ artefakti (v1.0.0)</text>
+  <text x="826" y="165" text-anchor="middle" fill="#475569" font-size="11">Sinov (Staging) tekshiruvi</text>
+
+  <!-- BOSQICH 5: TASDIQLASH VA PRODUCTION -->
+  <rect x="940" y="102" width="154" height="92" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2.2" />
+  <text x="1017" y="126" text-anchor="middle" fill="#14532d" font-size="12.5" font-weight="700">5. Tasdiq &amp; Reliz</text>
+  <text x="1017" y="146" text-anchor="middle" fill="#166534" font-size="11.5">GitHub Pages Deploy</text>
+  <text x="1017" y="165" text-anchor="middle" fill="#15803d" font-size="11" font-weight="600">Release Tag v1.0.0</text>
+
+  <!-- ROLLBACK -->
+  <rect x="782" y="278" width="312" height="86" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2" stroke-dasharray="6,3" />
+  <text x="938" y="305" text-anchor="middle" fill="#92400e" font-size="13" font-weight="700">↺ Avvalgi versiyaga qaytish (Rollback)</text>
+  <text x="938" y="325" text-anchor="middle" fill="#78350f" font-size="11.5">Xato topilsa: git revert &lt;SHA&gt; yoki avvalgi</text>
+  <text x="938" y="344" text-anchor="middle" fill="#78350f" font-size="11.5">barqaror tegni (v0.9.0 / v1.0.0) qayta deploy qilish</text>
+
+  <!-- STRELKALAR -->
+  <line x1="171" y1="148" x2="196" y2="148" stroke="#1d4ed8" stroke-width="2.4" marker-end="url(#ciArrow)" />
+  <line x1="350" y1="148" x2="376" y2="148" stroke="#1d4ed8" stroke-width="2.4" marker-end="url(#ciArrow)" />
+  <line x1="555" y1="148" x2="563" y2="148" stroke="#1d4ed8" stroke-width="2.4" marker-end="url(#ciArrow)" />
+
+  <line x1="635" y1="198" x2="635" y2="274" stroke="#dc2626" stroke-width="2.6" marker-end="url(#ciRed)" />
+  <text x="668" y="242" fill="#dc2626" font-size="12" font-weight="700">YO'Q (Fail)</text>
+
+  <line x1="705" y1="148" x2="738" y2="148" stroke="#15803d" stroke-width="2.6" marker-end="url(#ciGreen)" />
+  <text x="721" y="136" text-anchor="middle" fill="#15803d" font-size="11.5" font-weight="700">HA</text>
+
+  <line x1="910" y1="148" x2="936" y2="148" stroke="#15803d" stroke-width="2.6" marker-end="url(#ciGreen)" />
+  <line x1="1017" y1="194" x2="1017" y2="274" stroke="#b45309" stroke-width="2.2" stroke-dasharray="4,3" marker-end="url(#ciWarn)" />
+  <text x="1055" y="240" fill="#92400e" font-size="11" font-weight="700">Nosozlikda</text>
+</svg>

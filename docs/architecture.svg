@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 520" width="1080" height="520" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1d4ed8" />
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#15803d" />
+    </marker>
+    <marker id="arrowSlate" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155" />
+    </marker>
+  </defs>
+
+  <rect width="1080" height="520" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" />
+  <rect x="0" y="0" width="1080" height="62" rx="16" fill="#0f172a" />
+  <rect x="0" y="46" width="1080" height="16" fill="#0f172a" />
+  <text x="28" y="38" fill="#ffffff" font-size="20" font-weight="700">P11 — Komponentlar va Ma'lumot Oqimi Diagrammasi (Klient–Server Arxitekturasi)</text>
+  <text x="865" y="38" fill="#93c5fd" font-size="14" font-weight="600">DIK1305 · A09</text>
+
+  <!-- 1. INTERFEYS QATLAMI -->
+  <rect x="34" y="96" width="290" height="360" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" />
+  <rect x="34" y="96" width="290" height="44" rx="14" fill="#2563eb" />
+  <rect x="34" y="124" width="290" height="16" fill="#2563eb" />
+  <text x="179" y="124" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="700">1. INTERFEYS (Frontend SPA)</text>
+  <text x="179" y="162" text-anchor="middle" fill="#1e3a8a" font-size="12.5" font-weight="600">HTML5 · CSS3 · Vanilla JS (GitHub Pages)</text>
+
+  <rect x="54" y="180" width="250" height="64" rx="9" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5" />
+  <text x="68" y="203" fill="#0f172a" font-size="13.5" font-weight="700">Mijoz kabineti (UI)</text>
+  <text x="68" y="222" fill="#475569" font-size="12">Smeta v1/v2 solishtirish, Tasdiq/Rad</text>
+  <text x="68" y="237" fill="#475569" font-size="11.5">va ta'mir holatini kuzatish</text>
+
+  <rect x="54" y="258" width="250" height="58" rx="9" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5" />
+  <text x="68" y="280" fill="#0f172a" font-size="13.5" font-weight="700">Usta va Qabul xodimi paneli</text>
+  <text x="68" y="299" fill="#475569" font-size="12">Qurilma qabul qilish, Smeta v1/v2 kiritish</text>
+
+  <rect x="54" y="332" width="250" height="102" rx="9" fill="#dbeafe" stroke="#60a5fa" stroke-width="1.2" />
+  <text x="68" y="354" fill="#1e3a8a" font-size="12.5" font-weight="700">Mas'uliyati:</text>
+  <text x="68" y="373" fill="#1e293b" font-size="11.8">• Narx farqini (+Δ so'm) ko'rsatish</text>
+  <text x="68" y="391" fill="#1e293b" font-size="11.8">• Mijoz qarori va rad sababini olish</text>
+  <text x="68" y="409" fill="#1e293b" font-size="11.8">• Keyingi muqobil amalni ko'rsatish</text>
+
+  <!-- 2. QOIDA BAJARILADIGAN MODUL -->
+  <rect x="406" y="96" width="308" height="360" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5" />
+  <rect x="406" y="96" width="308" height="44" rx="14" fill="#15803d" />
+  <rect x="406" y="124" width="308" height="16" fill="#15803d" />
+  <text x="560" y="124" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="700">2. QOIDA MODULI (Backend API)</text>
+  <text x="560" y="162" text-anchor="middle" fill="#14532d" font-size="12.5" font-weight="600">Node.js HTTP REST API · Serverless</text>
+
+  <rect x="426" y="180" width="268" height="60" rx="9" fill="#ffffff" stroke="#86efac" stroke-width="1.5" />
+  <text x="440" y="203" fill="#0f172a" font-size="13.5" font-weight="700">REST API Marshrutizator (server.js)</text>
+  <text x="440" y="223" fill="#475569" font-size="12">/api/orders, /estimates, /decision, /status</text>
+
+  <rect x="426" y="254" width="268" height="72" rx="9" fill="#ffffff" stroke="#16a34a" stroke-width="2" />
+  <text x="440" y="276" fill="#14532d" font-size="13.5" font-weight="700">Biznes Qoida Moduli (estimatePolicy.js)</text>
+  <text x="440" y="295" fill="#334155" font-size="12">BR-P11: Smeta v1/v2 roziligi tekshiruvi</text>
+  <text x="440" y="313" fill="#b91c1c" font-size="11.5" font-weight="600">Tasdiqsiz ta'mirni 409 bilan bloklaydi!</text>
+
+  <rect x="426" y="340" width="268" height="96" rx="9" fill="#dcfce7" stroke="#4ade80" stroke-width="1.2" />
+  <text x="440" y="361" fill="#14532d" font-size="12.5" font-weight="700">Mas'uliyati:</text>
+  <text x="440" y="380" fill="#1e293b" font-size="11.8">• Smeta versiyalari farqini hisoblash</text>
+  <text x="440" y="398" fill="#1e293b" font-size="11.8">• Qabul (IN_PROGRESS) va Radni ajratish</text>
+  <text x="440" y="416" fill="#1e293b" font-size="11.8">• Eskirgan v1 tasdiqlanishini rad etish</text>
+
+  <!-- 3. MA'LUMOT MANBAI -->
+  <rect x="794" y="96" width="252" height="360" rx="14" fill="#fffbeb" stroke="#d97706" stroke-width="2.5" />
+  <rect x="794" y="96" width="252" height="44" rx="14" fill="#b45309" />
+  <rect x="794" y="124" width="252" height="16" fill="#b45309" />
+  <text x="920" y="124" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="700">3. MA'LUMOT MANBAI</text>
+  <text x="920" y="162" text-anchor="middle" fill="#78350f" font-size="12.5" font-weight="600">JSON / Fayl bazasi va LocalStorage</text>
+
+  <rect x="814" y="182" width="212" height="48" rx="8" fill="#ffffff" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="828" y="203" fill="#0f172a" font-size="13" font-weight="700">Orders (Buyurtmalar)</text>
+  <text x="828" y="220" fill="#475569" font-size="11.5">id, model, mijoz, status, agreedPrice</text>
+
+  <rect x="814" y="242" width="212" height="52" rx="8" fill="#ffffff" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="828" y="263" fill="#0f172a" font-size="13" font-weight="700">Estimates (Smeta v1, v2)</text>
+  <text x="828" y="280" fill="#475569" font-size="11.5">version, items[], priceDelta, reason</text>
+
+  <rect x="814" y="306" width="212" height="48" rx="8" fill="#ffffff" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="828" y="327" fill="#0f172a" font-size="13" font-weight="700">History (Audit jurnali)</text>
+  <text x="828" y="344" fill="#475569" font-size="11.5">vaqt, ishtirokchi, qaror izohi</text>
+
+  <rect x="814" y="368" width="212" height="68" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.2" />
+  <text x="828" y="388" fill="#78350f" font-size="12.5" font-weight="700">Mas'uliyati:</text>
+  <text x="828" y="406" fill="#1e293b" font-size="11.5">• Versiyalar va holatni saqlash</text>
+  <text x="828" y="423" fill="#1e293b" font-size="11.5">• Qarorlar izchilligini ta'minlash</text>
+
+  <!-- MA'LUMOT OQIMI STRELKALARI -->
+  <line x1="326" y1="215" x2="402" y2="215" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#arrowBlue)" />
+  <text x="365" y="198" text-anchor="middle" fill="#1d4ed8" font-size="11" font-weight="700">1. HTTP POST/GET</text>
+  <text x="365" y="210" text-anchor="middle" fill="#1d4ed8" font-size="10.5">(Qaror / Smeta)</text>
+
+  <line x1="404" y1="290" x2="328" y2="290" stroke="#15803d" stroke-width="2.5" marker-end="url(#arrowGreen)" />
+  <text x="365" y="278" text-anchor="middle" fill="#15803d" font-size="11" font-weight="700">4. JSON Javob</text>
+  <text x="365" y="306" text-anchor="middle" fill="#15803d" font-size="10.5">(Holat / Keyingi amal)</text>
+
+  <line x1="716" y1="225" x2="790" y2="225" stroke="#334155" stroke-width="2.5" marker-end="url(#arrowSlate)" />
+  <text x="754" y="213" text-anchor="middle" fill="#334155" font-size="11" font-weight="700">2. Yozish</text>
+
+  <line x1="792" y1="295" x2="718" y2="295" stroke="#334155" stroke-width="2.5" marker-end="url(#arrowSlate)" />
+  <text x="754" y="283" text-anchor="middle" fill="#334155" font-size="11" font-weight="700">3. O'qish</text>
+
+  <text x="540" y="492" text-anchor="middle" fill="#475569" font-size="12.5">
+    Ma'lumot oqimi: Mijoz qarori (Approve / Reject) → REST API va BR-P11 qoida tekshiruvi → Ma'lumotlar bazasini yangilash → Natija ekrani
+  </text>
+</svg>
