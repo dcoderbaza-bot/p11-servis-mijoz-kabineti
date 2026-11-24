@@ -57,6 +57,30 @@
       --shadow-lg: 0 24px 60px -12px rgba(0, 0, 0, 0.65);
     }
 
+    /* LOW-FI WIREFRAME SKETCH SKIN (A10 SXEMA REJIMI) */
+    [data-fidelity="wireframe"] {
+      --bg-canvas: #f8fafc;
+      --surface: #ffffff;
+      --surface-2: #f1f5f9;
+      --ink: #0f172a;
+      --ink-2: #334155;
+      --muted: #475569;
+      --border: #64748b;
+      --border-strong: #334155;
+      --brand: #1e293b;
+      --brand-2: #334155;
+      --brand-soft: #e2e8f0;
+    }
+    [data-fidelity="wireframe"] .mockup-window,
+    [data-fidelity="wireframe"] .ticket-card,
+    [data-fidelity="wireframe"] .diff-card,
+    [data-fidelity="wireframe"] .st-box,
+    [data-fidelity="wireframe"] .option-card {
+      box-shadow: none !important;
+      border-style: dashed !important;
+      border-width: 1.8px !important;
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -716,7 +740,10 @@
 
       <div class="segmented">
         <button class="seg-btn active" id="btnModeDesktop" onclick="setStudioMode('desktop')">
-          ✨ Interaktiv Prototip
+          ✨ Hi-Fi Prototip
+        </button>
+        <button class="seg-btn" id="btnModeWire" onclick="setStudioMode('wireframe')">
+          ✏️ Wireframe Chizma
         </button>
         <button class="seg-btn" id="btnModeMobile" onclick="setStudioMode('mobile')">
           📱 Mobil Maket
@@ -1170,9 +1197,14 @@
       } else {
         overview.classList.remove('open');
         stage.style.display = 'block';
+        document.documentElement.removeAttribute('data-fidelity');
         if (mode === 'mobile') {
           document.getElementById('btnModeMobile').classList.add('active');
           stage.classList.add('mobile-frame');
+        } else if (mode === 'wireframe') {
+          document.getElementById('btnModeWire').classList.add('active');
+          stage.classList.remove('mobile-frame');
+          document.documentElement.setAttribute('data-fidelity', 'wireframe');
         } else {
           document.getElementById('btnModeDesktop').classList.add('active');
           stage.classList.remove('mobile-frame');

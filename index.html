@@ -27,6 +27,7 @@
 
       <div class="nav-controls">
         <span class="engine-badge" id="engineBadge">● Yuklanmoqda...</span>
+        <button class="nav-btn" onclick="window.App.openTestModal()">🧪 Testlar (6/6 ✓)</button>
         <a class="nav-btn" href="./prototype.html">📐 UX Prototip Studiyasi</a>
         <button class="nav-btn" onclick="window.App.resetDemo()">↺ Demo tiklash</button>
         <button class="nav-btn theme-toggle" id="themeToggleBtn" onclick="window.App.toggleTheme()" title="Kun / Tun rejimi">🌙</button>
@@ -42,6 +43,18 @@
       <div>
         <strong style="color:var(--brand);">⚡ Namoyish ssenariysi (#ORD-101 · iPhone 14 Pro):</strong>
         Mijoz dastlabki <strong>Smeta v1</strong> (ekran almashtirish — <span class="mono">1 200 000 so‘m</span>) ni tasdiqlagan. Usta ichki diagnostikada qo‘shimcha nosozlik topib <strong>Smeta v2</strong> (<span class="mono">1 650 000 so‘m</span>) yuborgan. Mijoz ikkala versiyani yonma-yon solishtirib <strong>Tasdiqlashi (Qabul)</strong> yoki <strong>Rad etishi (sabab + keyingi amal)</strong> mumkin.
+      </div>
+    </section>
+
+    <section class="tour-bar">
+      <div style="font-size:12.8px;font-weight:700;color:var(--brand);">
+        🎬 2 daqiqalik Interaktiv Demo Ssenariysi (#ORD-101):
+      </div>
+      <div class="tour-steps">
+        <button class="tour-btn" onclick="window.App.runDemoStep(1)">1. Dastlabki v1 vs v2 holat</button>
+        <button class="tour-btn" onclick="window.App.runDemoStep(2)">2. Qabul sinovi (Tasdiqlash)</button>
+        <button class="tour-btn" onclick="window.App.runDemoStep(3)">3. Rad etish va keyingi amal</button>
+        <button class="tour-btn" onclick="window.App.runDemoStep(4)">4. Usta 409 Himoyasi sinovi</button>
       </div>
     </section>
 
@@ -224,6 +237,11 @@
       </div>
     </section>
   </main>
+
+  <!-- JONLI AVTOMATIK TESTLAR VA KVITANSIYA MODAL OYNASI -->
+  <div class="modal-backdrop" id="appModal" onclick="if(event.target===this)window.App.closeModal()">
+    <div class="modal-card" id="appModalContent"></div>
+  </div>
 
   <script src="./src/domain/estimatePolicy.js"></script>
   <script src="./data/seedOrders.js"></script>
