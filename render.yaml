@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: p11-servis-mijoz-kabineti-api
+    runtime: node
+    plan: free
+    buildCommand: npm run lint:check
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production

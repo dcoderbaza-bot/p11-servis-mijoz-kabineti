@@ -1,0 +1,64 @@
+name: P11 CI/CD — Avtomatik Testlar va GitHub Pages Relizi
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages-deploy"
+  cancel-in-progress: false
+
+jobs:
+  build-and-test:
+    name: 1. Sintaksis, Avtomatik Testlar va Reliz Paketi
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repozitoriydan kodni olish
+        uses: actions/checkout@v4
+
+      - name: Node.js 20 muhitini sozlash
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sintaksis va modullar butunligini tekshirish
+        run: npm run lint:check
+
+      - name: Asosiy biznes qoidasi (Qabul va Rad etish) avtomatik testlari
+        run: npm test
+
+      - name: Reliz paketini yig'ish (dist/)
+        run: npm run build:release
+
+      - name: Reliz artefaktini saqlash
+        uses: actions/upload-artifact@v4
+        with:
+          name: p11-release-bundle
+          path: dist/
+
+      - name: GitHub Pages uchun sinov paketini yuklash
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/
+
+  deploy-release:
+    name: 2. Tasdiqlangan Relizni GitHub Pages'ga chiqarish
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: GitHub Pages muhitiga joylash
+        id: deployment
+        uses: actions/deploy-pages@v4
